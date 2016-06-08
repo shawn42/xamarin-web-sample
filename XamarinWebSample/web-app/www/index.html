@@ -1,0 +1,27 @@
+<html>
+  <head>
+  <script src="jquery-2.0.0.min.js"></script>
+  <script src="ember.min.js"></script>
+  <script src="xamarin-interop.js"></script>
+  <script>
+    function setup() {
+    XamarinInterop.subscribe("SampleService.CallCount", function(count) {
+          $('#count').text(count);
+        });
+    }
+    function square() {
+    XamarinInterop.call("SampleService.Square",5).then(function(v){
+          $('#square').text(v);
+        });
+    }
+  
+  </script>
+  </head>
+  <body>
+    <h1>Hello from the web-app!</h1>
+    <button onclick="setup();">Setup</button>
+    <button onclick="square();">Square</button>
+    <h2 id="square"/>
+    <h2 id="count"/>
+  </body>
+</html>
